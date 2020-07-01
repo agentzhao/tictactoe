@@ -33,18 +33,20 @@ public class Main {
         //check if game not finished
         for (int i=0;i<9;++i){
             if (ttt[i].equals("X")){
-                countx = countx + 1;
+                countx++;
             } else if (ttt[i].equals("O")){
-                counto = counto + 1;
+                counto++;
             } else {
                 notfinished = true;
             }
         }
         
-        if (-1 > (counto - countx) || (counto - countx) > 1){
+        //check if game is impossible
+        if ((counto - countx) < -1 || (counto - countx) > 1){
             impossible = true;     
         }
         
+        //check who wins
         if (ttt[0].equals(ttt[1]) && ttt[1].equals(ttt[2])){
             if (ttt[0].equals("X")){
                 xwins = true;
@@ -112,6 +114,8 @@ public class Main {
         }
         
         if (xwins && owins){
+            System.out.println("Impossible");
+        } else if (impossible){
             System.out.println("Impossible");
         } else if (xwins){
             System.out.println("X wins");
